@@ -1,20 +1,50 @@
-package com.lld.mtb.model;
+package com.lld.mtb.models;
 
-@Bean
+import org.springframework.stereotype.Component;
+
+@Component
 public class Movie {
-    private String name;
+    private String title;
     private String id;
     private String runningTime;
     private String ratings;
     private String reviews;
     private String description;
+    private String language;
 
-    public String getName() {
-        return name;
+    public String getLanguage() {
+        return language;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    public String getReleaseDate() {
+        return releaseDate;
+    }
+
+    public void setReleaseDate(String releaseDate) {
+        this.releaseDate = releaseDate;
+    }
+
+    private String genre;
+    private String releaseDate;
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getId() {
@@ -60,12 +90,15 @@ public class Movie {
     @Override
     public String toString() {
         return "Movie{" +
-                "name='" + name + '\'' +
+                "title='" + title + '\'' +
                 ", id='" + id + '\'' +
                 ", runningTime='" + runningTime + '\'' +
                 ", ratings='" + ratings + '\'' +
                 ", reviews='" + reviews + '\'' +
                 ", description='" + description + '\'' +
+                ", language='" + language + '\'' +
+                ", genre='" + genre + '\'' +
+                ", releaseDate='" + releaseDate + '\'' +
                 '}';
     }
 }
