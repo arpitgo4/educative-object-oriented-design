@@ -1,4 +1,9 @@
 package com.lld.mtb.implementations;
 
-public class Seat {
+import com.lld.mtb.abstractClasses.AbstractSeat;
+
+public class Seat extends AbstractSeat {
+    public Seat(String number, String type, String status) {
+        super(number, type, status);
+    }
 }

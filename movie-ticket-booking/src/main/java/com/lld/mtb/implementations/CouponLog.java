@@ -1,4 +1,6 @@
-package com.lld.mtb.abstractClasses;
+package com.lld.mtb.implementations;
 
-public abstract class CouponLog {
+import com.lld.mtb.abstractClasses.AbstractLog;
+
+public class CouponLog extends AbstractLog<Coupon> {
 }

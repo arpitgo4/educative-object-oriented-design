@@ -3,7 +3,9 @@ package com.lld.mtb.abstractClasses;
 import com.lld.mtb.interfaces.IShowCatalogue;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public abstract class Hall {
+import java.util.List;
+
+public abstract class AbstractHall {
 
     private String name;
     private String id;
@@ -12,7 +14,17 @@ public abstract class Hall {
     @Autowired
     private IShowCatalogue showCatalogue;
 
-    public Show getCurrentShow() {
+    public AbstractHall(String name, String id, String number) {
+        this.name = name;
+        this.id = id;
+        this.number = number;
+    }
+
+    public AbstractShow getCurrentShow() {
         return null;
+    }
+
+    public List<AbstractShow> getShows() {
+        return showCatalogue.getShowsByHall(this.name);
     }
 }

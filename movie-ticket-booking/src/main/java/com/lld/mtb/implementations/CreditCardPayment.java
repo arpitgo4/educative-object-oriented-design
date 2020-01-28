@@ -5,8 +5,10 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class CreditCardPayment implements IPayment {
-    @Override
-    public void pay(int amount) {
 
+    @Override
+    public boolean pay(int amount) {
+        return false;
     }
+
 }

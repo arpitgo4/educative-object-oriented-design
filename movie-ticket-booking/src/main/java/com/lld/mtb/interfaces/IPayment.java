@@ -1,7 +1,5 @@
-package com.lld.mtb.abstractClasses;
+package com.lld.mtb.interfaces;
 
-public abstract class AbstractPayment {
-
-    public abstract boolean pay(int amount);
-
+public interface IPayment {
+    boolean pay(int amount);
 }

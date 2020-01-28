@@ -1,9 +1,8 @@
 package com.lld.mtb.implementations;
 
-import com.lld.mtb.abstractClasses.Cinema;
-import com.lld.mtb.abstractClasses.Hall;
-import com.lld.mtb.abstractClasses.Seat;
-import com.lld.mtb.abstractClasses.Show;
+import com.lld.mtb.abstractClasses.AbstractCinema;
+import com.lld.mtb.abstractClasses.AbstractHall;
+import com.lld.mtb.abstractClasses.AbstractShow;
 import com.lld.mtb.interfaces.IShowCatalogue;
 import com.lld.mtb.models.Movie;
 import org.springframework.stereotype.Component;
@@ -14,9 +13,9 @@ import java.util.Map;
 
 @Component
 public class ShowCatalogue implements IShowCatalogue {
-    Map<String, List<Cinema>> cinemasByCity;
-    Map<String, List<Hall>> hallByCinema;
-    Map<String, List<Show>> showsByHall;
+    Map<String, List<AbstractCinema>> cinemasByCity;
+    Map<String, List<AbstractHall>> hallByCinema;
+    Map<String, List<AbstractShow>> showsByHall;
     Map<String, List<Movie>> moviesByCity;
 
     public ShowCatalogue() {
@@ -24,21 +23,21 @@ public class ShowCatalogue implements IShowCatalogue {
     }
 
     @Override
-    public List<Cinema> getCinemasByCity(String cityName) {
+    public List<AbstractCinema> getCinemasByCity(String cityName) {
         return cinemasByCity.get(cityName);
     }
 
     @Override
     public List<Movie> getMoviesByHall(String hallName) {
         List<Movie> movies = new ArrayList<>();
-        for (Show show : showsByHall.get(hallName))
+        for (AbstractShow show : showsByHall.get(hallName))
             movies.add(show.getMovie());
 
         return movies;
     }
 
     @Override
-    public List<Hall> getHallsByCinema(String cinemaName) {
+    public List<AbstractHall> getHallsByCinema(String cinemaName) {
         return hallByCinema.get(cinemaName);
     }
 
@@ -48,7 +47,7 @@ public class ShowCatalogue implements IShowCatalogue {
     }
 
     @Override
-    public List<Show> getShowsByHall(String hallName) {
+    public List<AbstractShow> getShowsByHall(String hallName) {
         return showsByHall.get(hallName);
     }
 }

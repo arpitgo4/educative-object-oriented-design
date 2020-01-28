@@ -1,6 +1,9 @@
 package com.lld.mtb.implementations;
 
-import com.lld.mtb.abstractClasses.City;
+import com.lld.mtb.abstractClasses.AbstractCity;
 
-public class CityImpl extends City {
+public class City extends AbstractCity {
+    public City(String name, String location) {
+        super(name, location);
+    }
 }

@@ -1,10 +1,16 @@
 package com.lld.mtb.abstractClasses;
 
-public abstract class Seat {
+public abstract class AbstractSeat {
 
     private String number;
     private String type;
     private String status;
+
+    public AbstractSeat(String number, String type, String status) {
+        this.number = number;
+        this.type = type;
+        this.status = status;
+    }
 
     public String getNumber() {
         return number;

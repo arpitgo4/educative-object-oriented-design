@@ -1,6 +1,6 @@
 package com.lld.mtb.implementations;
 
-import com.lld.mtb.abstractClasses.Hall;
+import com.lld.mtb.abstractClasses.AbstractHall;
 
-public class HallImpl extends Hall {
+public class Hall extends AbstractHall {
 }
