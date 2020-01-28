@@ -1,0 +1,238 @@
+@startuml
+package com.lld.mtb {
+  class MtbApplication {
+    + MtbApplication()
+    + main(args : String[]) {static}
+  }
+}
+package com.lld.mtb.models {
+  class Movie {
+    - description : String
+    - genre : String
+    - id : String
+    - language : String
+    - ratings : String
+    - releaseDate : String
+    - reviews : String
+    - runningTime : String
+    - title : String
+    + Movie()
+    + getDescription() : String
+    + getGenre() : String
+    + getId() : String
+    + getLanguage() : String
+    + getRatings() : String
+    + getReleaseDate() : String
+    + getReviews() : String
+    + getRunningTime() : String
+    + getTitle() : String
+    + setDescription(description : String)
+    + setGenre(genre : String)
+    + setId(id : String)
+    + setLanguage(language : String)
+    + setRatings(ratings : String)
+    + setReleaseDate(releaseDate : String)
+    + setReviews(reviews : String)
+    + setRunningTime(runningTime : String)
+    + setTitle(title : String)
+    + toString() : String
+  }
+}
+package com.lld.mtb.implementations {
+  class Admin {
+    + Admin()
+  }
+  class BookingLog {
+    + BookingLog()
+  }
+  class CashPayment {
+    + CashPayment()
+    + pay(amount : int)
+  }
+  class Cinema {
+    + Cinema()
+  }
+  class City {
+    + City()
+  }
+  class CouponLog {
+    + CouponLog()
+  }
+  class CreditCardPayment {
+    + CreditCardPayment()
+    + pay(amount : int)
+  }
+  class Customer {
+    - password : String
+    - payment : IPayment
+    - username : String
+    + Customer(username : String, password : String)
+    + bookTicket() : AbstractTicket
+    + login(username : String, password : String) : Account
+    + pay(amount : int)
+  }
+  class EmailNotification {
+    + EmailNotification()
+    + send(message : String)
+  }
+  class Guest {
+    + Guest()
+  }
+  class Hall {
+    + Hall()
+  }
+  class MovieCatalogue {
+    - moviesByGenre : Map<String, List<Movie>>
+    - moviesByLanguage : Map<String, List<Movie>>
+    - moviesByReleaseDate : Map<String, List<Movie>>
+    - moviesByTitle : Map<String, List<Movie>>
+    - showCatalogue : IShowCatalogue
+    + MovieCatalogue(movies : List<Movie>)
+    + searchByCity(city : String) : List<Movie>
+    + searchByGenre(genre : String) : List<Movie>
+    + searchByLanguage(language : String) : List<Movie>
+    + searchByReleaseDate(releaseDate : String) : List<Movie>
+    + searchByTitle(title : String) : List<Movie>
+  }
+  class SMSNotification {
+    + SMSNotification()
+    + send(message : String)
+  }
+  class Seat {
+    + Seat()
+  }
+  class Show {
+    + Show()
+  }
+  class ShowCatalogue {
+    ~ cinemasByCity : Map<String, List<AbstractCinema>>
+    ~ hallByCinema : Map<String, List<AbstractHall>>
+    ~ moviesByCity : Map<String, List<Movie>>
+    ~ showsByHall : Map<String, List<AbstractShow>>
+    + ShowCatalogue()
+    + getCinemasByCity(cityName : String) : List<AbstractCinema>
+    + getHallsByCinema(cinemaName : String) : List<AbstractHall>
+    + getMoviesByCity(cityName : String) : List<Movie>
+    + getMoviesByHall(hallName : String) : List<Movie>
+    + getShowsByHall(hallName : String) : List<AbstractShow>
+  }
+  class Ticket {
+    + Ticket()
+  }
+}
+package com.lld.mtb.interfaces {
+  interface IMovieCatalogue {
+    + searchByCity(String) : List<Movie> {abstract}
+    + searchByGenre(String) : List<Movie> {abstract}
+    + searchByLanguage(String) : List<Movie> {abstract}
+    + searchByReleaseDate(String) : List<Movie> {abstract}
+    + searchByTitle(String) : List<Movie> {abstract}
+  }
+  interface IPayment {
+    + pay(int) {abstract}
+  }
+  interface IShowCatalogue {
+    + getCinemasByCity(String) : List<AbstractCinema> {abstract}
+    + getHallsByCinema(String) : List<AbstractHall> {abstract}
+    + getMoviesByCity(String) : List<Movie> {abstract}
+    + getMoviesByHall(String) : List<Movie> {abstract}
+    + getShowsByHall(String) : List<AbstractShow> {abstract}
+  }
+}
+package com.lld.mtb.abstractClasses {
+  abstract class AbstractCinema {
+    - location : String
+    - name : String
+    - showCatalogue : IShowCatalogue
+    + AbstractCinema()
+    + getHalls(cinemaName : String, cityName : String) : List<AbstractHall>
+  }
+  abstract class AbstractCity {
+    - location : String
+    - name : String
+    - showCatalogue : IShowCatalogue
+    + AbstractCity()
+    + getCinemasByCity(cityName : String) : List<AbstractCinema>
+  }
+  abstract class AbstractHall {
+    - id : String
+    - name : String
+    - number : String
+    - showCatalogue : IShowCatalogue
+    + AbstractHall()
+    + getCurrentShow() : AbstractShow
+  }
+  abstract class AbstractLog {
+    + AbstractLog()
+  }
+  abstract class AbstractNotification {
+    + AbstractNotification()
+    + send(String) {abstract}
+  }
+  abstract class AbstractSeat {
+    - number : String
+    - status : String
+    - type : String
+    + AbstractSeat()
+    + getNumber() : String
+    + getStatus() : String
+    + getType() : String
+    + setNumber(number : String)
+    + setStatus(status : String)
+    + setType(type : String)
+    + toString() : String
+  }
+  abstract class AbstractShow {
+    - entryTime : String
+    - exitTime : String
+    - movie : Movie
+    - name : String
+    - price : float
+    - seats : List<AbstractSeat>
+    - showCatalogue : IShowCatalogue
+    + AbstractShow()
+    + getMovie() : Movie
+    + getName() : String
+    + getRunningTime() : String
+    + getSeats(hallName : String) : List<AbstractSeat>
+  }
+  abstract class AbstractTicket {
+    + AbstractTicket()
+  }
+  abstract class Account {
+    ~ movieCatalogue : IMovieCatalogue
+    + Account()
+    + filterMoviesByCity(city : String) : List<Movie>
+    + filterMoviesByGenre(genre : String) : List<Movie>
+    + filterMoviesByLanguage(language : String) : List<Movie>
+    + filterMoviesByReleaseDate(releaseDate : String) : List<Movie>
+    + filterMoviesByTitle(title : String) : List<Movie>
+    + register(username : String, password : String) : Account
+  }
+}
+AbstractCinema -->  "-showCatalogue" IShowCatalogue
+AbstractShow -->  "-movie" Movie
+AbstractHall -->  "-showCatalogue" IShowCatalogue
+AbstractCity -->  "-showCatalogue" IShowCatalogue
+AbstractShow -->  "-showCatalogue" IShowCatalogue
+Account -->  "-movieCatalogue" IMovieCatalogue
+MovieCatalogue -->  "-showCatalogue" IShowCatalogue
+AbstractShow -->  "-seats" AbstractSeat
+Customer -->  "-payment" IPayment
+BookingLog --|> AbstractLog 
+CashPayment ..|> IPayment 
+Cinema --|> AbstractCinema 
+City --|> AbstractCity 
+CouponLog --|> AbstractLog 
+CreditCardPayment ..|> IPayment 
+Customer --|> Account 
+EmailNotification --|> AbstractNotification 
+Guest --|> Account 
+Hall --|> AbstractHall 
+MovieCatalogue ..|> IMovieCatalogue 
+SMSNotification --|> AbstractNotification 
+Seat --|> AbstractSeat 
+Show --|> AbstractShow 
+ShowCatalogue ..|> IShowCatalogue 
+Ticket --|> AbstractTicket 
+@enduml
