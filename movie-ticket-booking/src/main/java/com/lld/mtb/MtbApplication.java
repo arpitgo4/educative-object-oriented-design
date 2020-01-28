@@ -8,6 +8,8 @@ public class MtbApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(MtbApplication.class, args);
+
+
 	}
 
 }
